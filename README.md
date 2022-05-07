@@ -1,6 +1,6 @@
 # run-python-script
 
-Boilerplate to run containerized python scripts
+Boilerplate to run containerized python scripts.
 
 ## Requirements
 
