@@ -2,37 +2,54 @@
 
 Boilerplate to run containerized python scripts.
 
+- **Docker image:** [ar2pi/run-python-script](https://hub.docker.com/repository/docker/ar2pi/run-python-script)
+
 ## Requirements
 
 - [Docker](https://www.docker.com/)
 
-## Setup
+## Run containerized python script
 
 ```sh
-# Replace [PROJECT_NAME] with your project name
-git clone git@github.com:ar2pi/run-python-script.git [PROJECT_NAME]
+# python 3
+docker run -v $(pwd):/code ar2pi/run-python-script python script_file.py
 
-docker build -t [PROJECT_NAME] .
+# python 2
+docker run -v $(pwd):/code ar2pi/run-python-script:python2 python script_file.py
 ```
 
-## Run
+## Debug within container
 
 ```sh
-docker run -v $(pwd)/src:/code [PROJECT_NAME]
+# python 3
+docker run -it -v $(pwd):/code ar2pi/run-python-script /bin/bash
+
+# python 2
+docker run -it -v $(pwd):/code ar2pi/run-python-script:python2 /bin/bash
 ```
 
-## Debug
+## Setup new project
 
 ```sh
-docker run -it -v $(pwd)/src:/code [PROJECT_NAME] /bin/bash
+export PROJECT_NAME=[YOUR_PROJECT_NAME]
+git clone git@github.com:ar2pi/run-python-script.git $PROJECT_NAME
+cd $PROJECT_NAME
+docker build -t $PROJECT_NAME .
+
+# run main.py
+docker run -v $(pwd)/src:/code $PROJECT_NAME
+# debug
+docker run -it -v $(pwd)/src:/code $PROJECT_NAME /bin/bash
 ```
 
 ## Dev container
 
-To get intellisense and all that jazz you need to point your editor to use a running container for python runtime.
+To get intellisense and all that jazz your editor needs to run in a container with python's runtime and libraries.
 
-### Vscode 
+### Vscode
 
-See -> https://code.visualstudio.com/docs/devcontainers/create-dev-container
+When opening the project folder you should see an option "Reopen in Container", click on that. Or open the command palette (CTRL + Shift + P) and search for "Dev Containers: Reopen in Container".  
 
-[.devcontainer.json](.devcontainer.json) contains all necessary configuration. When opening the project folder you should see an option "Reopen in Container", click on that. Or open command palette (CTRL + Shift + P) and search for "Dev Containers: Reopen in Container".
+[.devcontainer.json](.devcontainer.json) contains the necessary configuration.
+
+For reference see [vscode docs](https://code.visualstudio.com/docs/devcontainers/create-dev-container).
