@@ -1,7 +1,5 @@
 # run-python-script
 
-Boilerplate to run containerized python scripts.
-
 - **Docker image:** [ar2pi/run-python-script](https://hub.docker.com/repository/docker/ar2pi/run-python-script)
 
 ## Requirements
@@ -48,7 +46,7 @@ To get intellisense and all that jazz your editor needs to run in a container wi
 
 ### Vscode
 
-When opening the project folder you should see an option "Reopen in Container", click on that. Or open the command palette (CTRL + Shift + P) and search for "Dev Containers: Reopen in Container".  
+When opening the project folder you should see an option *"Reopen in Container"* ➜ click on that. Or open the command palette (CTRL + Shift + P) + search for *"Dev Containers: Reopen in Container"*.  
 
 [.devcontainer.json](.devcontainer.json) contains the necessary configuration.
 

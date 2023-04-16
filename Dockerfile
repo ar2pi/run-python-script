@@ -2,13 +2,12 @@ FROM python:3-slim-bullseye
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Keeps Python from generating .pyc files in the container
+# Keep Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
-
-# Turns off buffering for easier container logging
+# Turn off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
-# install additional deb packages
+# Install additional deb packages
 RUN apt-get update -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false && apt-get install -y \
     gcc \
     git \
@@ -17,19 +16,17 @@ RUN apt-get update -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=fa
 
 WORKDIR /code
 
-# creates a non-root user and adds permission to access the /code folder
+# Create and use a non-root user
 RUN groupadd -g 1000 slytherin \
-    && useradd -u 1000 -g 1000 -s /bin/bash --create-home slytherin \
+    && useradd -u 1000 -g 1000 -s /bin/bash -m slytherin \
     && chown -R 1000:1000 /code
-USER slytherin:slytherin
+USER slytherin
 
 ENV PATH="/home/slytherin/.local/bin:${PATH}"
 
-COPY requirements.txt .
+COPY --chown=1000:1000 src/ .
 
-RUN pip install --upgrade pip \
-    && pip install -r requirements.txt
-
-COPY src/ .
+RUN pip install --user --upgrade pip \
+    && pip install --user -r requirements.txt
 
 CMD [ "python", "./main.py" ]
