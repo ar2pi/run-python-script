@@ -32,6 +32,7 @@ docker run -it -v $(pwd):/code ar2pi/run-python-script:python2 /bin/bash
 export PROJECT_NAME=[YOUR_PROJECT_NAME]
 git clone git@github.com:ar2pi/run-python-script.git $PROJECT_NAME
 cd $PROJECT_NAME
+rm -rvf .git
 docker build -t $PROJECT_NAME .
 
 # run main.py
