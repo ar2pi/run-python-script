@@ -11,7 +11,7 @@ ENV PYTHONUNBUFFERED=1
 RUN apt-get update -o Acquire::Check-Valid-Until=false -o Acquire::Check-Date=false && apt-get install -y \
     gcc \
     git \
-    python3-dev \
+    python2-dev \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /code

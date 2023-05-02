@@ -27,6 +27,7 @@ ENV PATH="/home/slytherin/.local/bin:${PATH}"
 COPY --chown=1000:1000 src/ .
 
 RUN pip install --user --upgrade pip \
+    && pip install --user autopep8 \
     && pip install --user -r requirements.txt
 
 CMD [ "python", "./main.py" ]
