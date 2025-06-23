@@ -1,6 +1,6 @@
 # run-python-script
 
-- **Docker image:** [ar2pi/run-python-script](https://hub.docker.com/repository/docker/ar2pi/run-python-script)
+[Dockerhub](https://hub.docker.com/repository/docker/ar2pi/run-python-script)
 
 ## Requirements
 
@@ -52,3 +52,12 @@ When opening the project folder you should see an option *"Reopen in Container"*
 [.devcontainer.json](.devcontainer.json) contains the necessary configuration.
 
 For reference see [vscode docs](https://code.visualstudio.com/docs/devcontainers/create-dev-container).
+
+## Build
+
+```sh
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t ar2pi/run-python-script:latest \
+  --push .
+```
