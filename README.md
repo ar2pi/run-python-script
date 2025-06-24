@@ -50,6 +50,6 @@ For reference see [vscode docs](https://code.visualstudio.com/docs/devcontainers
 ```sh
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
-  -t ar2pi/run-python-script:latest \
+  -t ar2pi/run-python-script \
   --push .
 ```
