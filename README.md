@@ -9,21 +9,13 @@
 ## Run containerized python script
 
 ```sh
-# python 3
 docker run -v $(pwd):/code ar2pi/run-python-script python script_file.py
-
-# python 2
-docker run -v $(pwd):/code ar2pi/run-python-script:python2 python script_file.py
 ```
 
 ## Debug within container
 
 ```sh
-# python 3
 docker run -it -v $(pwd):/code ar2pi/run-python-script /bin/bash
-
-# python 2
-docker run -it -v $(pwd):/code ar2pi/run-python-script:python2 /bin/bash
 ```
 
 ## Setup new project
